@@ -1,0 +1,200 @@
+#   execs:
+#       - <exec_name_1>:
+#           - args: <commandline arg_list 1> # Leave blank if no arguments
+#             <optional> accel-sim-mem: <xG>
+#           - args: <commandline arg_list 2>
+#           ...
+#       - <exec_name_2>
+#           ...
+#       ...
+# If you have a bunch of random benchmarks in random places, then a "suite" can be just one benchmark
+
+
+mahmood_polybench:
+    exec_dir: "/home/mnaderan/gpu-apps/polybench"
+    data_dirs: "/home/mnaderan/gpu-apps/polybench"
+    execs:
+        - gemm1536:
+            - args: 
+              accel-sim-mem: 1G
+mahmood_parboil:
+    exec_dir: "/home/mnaderan/gpu-apps/parboil"
+    data_dirs: "/home/mnaderan/gpu-apps/parboil"
+    execs:
+        - bfs_ny:
+            - args: -i ./data_dirs/graph_input.dat -o ./data_dirs/bfs.out
+              accel-sim-mem: 1G
+        - cutcp:
+            - args: -i ./data_dirs/watbox.sl100.pqr -o ./data_dirs/lattice.dat
+              accel-sim-mem: 1G
+        - histo:
+            - args: -i ./data_dirs/img.bin -o ./data_dirs/ref.bmp -- 100 4
+              accel-sim-mem: 1G
+        - lbm:
+            - args: -i ./data_dirs/120_120_150_ldc.of -o ./data_dirs/reference.dat -- 3000
+              accel-sim-mem: 1G
+        - spmv:
+            - args: -i ./data_dirs/Dubcova3.mtx.bin,./data_dirs/vector.bin -o ./data_dirs/Dubcova3.mtx.out
+              accel-sim-mem: 1G
+        - stencil:
+            - args: -i ./data_dirs/512x512x64x100.bin -o ./data_dirs/512x512x64.out -- 512 512 64 100
+              accel-sim-mem: 1G
+
+mahmood_rodinia:
+    exec_dir: "/home/mnaderan/gpu-apps/rodinia"
+    data_dirs: "/home/mnaderan/gpu-apps/rodinia"
+    execs:
+        - cfd:
+            - args: ./data_dirs/missile.domn.0.2M
+              accel-sim-mem: 1G
+        - dwt2d:
+            - args: rgb.bmp -d 1024x1024 -f -5 -l 3
+              accel-sim-mem: 1G
+        - dwt2d:
+            - args: 3072.bmp -d 3072x3072 -f -5 -l 3
+              accel-sim-mem: 1G    
+        - dwt2d:
+            - args: 1536.bmp -d 1536x1536 -f -5 -l 3
+              accel-sim-mem: 1G
+        - gaussian:
+            - args: -q -f ./data_dirs/matrix8192.txt
+              accel-sim-mem: 1G
+        - heartwall:
+            - args: ./data_dirs/test.avi 20
+              accel-sim-mem: 1G
+        - hotspot3D:
+            - args: 512 8 100 ./data_dirs/power_512x8 ./data_dirs/temp_512x8 ./data_dirs/output.out
+              accel-sim-mem: 1G
+        - huffman:
+            - args: ./data_dirs/test1024_H2.206587175259.in
+              accel-sim-mem: 1G
+        - lud:
+            - args: -s 256 -v
+              accel-sim-mem: 1G
+        - lud:
+            - args: -s 4096
+              accel-sim-mem: 1G
+        - lud:
+            - args: -s 8192
+              accel-sim-mem: 1G
+        - nw:
+            - args: 2048 10
+              accel-sim-mem: 1G
+        - pathfinder:
+            - args: 100000 100 20
+              accel-sim-mem: 1G
+        - srad:
+            - args: 100 0.5 502 458
+              accel-sim-mem: 1G
+        - streamcluster:
+            - args: -i 10 20 256 65536 65536 1000 none ./data_dirs/output.txt 1
+              accel-sim-mem: 1G
+
+              
+mahmood_sdk:
+    exec_dir: "/home/mnaderan/gpu-apps/sdk"
+    data_dirs: "/home/mnaderan/gpu-apps/sdk"
+    execs:
+        - blackscholes:
+            - args: 
+              accel-sim-mem: 1G
+        - dct8x8:
+            - args: 
+              accel-sim-mem: 1G
+        - histogram:
+            - args: 
+              accel-sim-mem: 1G
+        - hsoptical:
+            - args: 
+              accel-sim-mem: 1G
+        - random:
+            - args: 
+              accel-sim-mem: 1G
+        - walsh:
+            - args: 
+              accel-sim-mem: 1G
+        - mergesort:
+            - args: 
+              accel-sim-mem: 1G
+        - sortingnet:
+            - args: 
+              accel-sim-mem: 1G
+        - scan:
+            - args: 
+              accel-sim-mem: 1G
+        - nvjpeg:
+            - args: -i ./data_dirs/images/
+              accel-sim-mem: 1G
+        - cholesky:
+            - args: -file ./data_dirs/lap2D_5pt_n100.mtx
+              accel-sim-mem: 1G
+        - gradient:
+            - args: 
+              accel-sim-mem: 1G
+
+mahmood_cactus:
+    exec_dir: "/home/mnaderan/gpu-apps/cactus"
+    data_dirs: "/disk2/cactus/cactus-full/workloads"
+    execs:
+        - gru:
+            - args: market ./data_dirs/GRU/road_usa.mtx
+              accel-sim-mem: 1G
+        - gst:
+            - args: market ./data_dirs/GST/soc-twitter-2010.mtx
+              accel-sim-mem: 1G
+        - gms:
+            - args: mdrun -notunepme -pme gpu -nb gpu -v -deffnm ./data_dirs/GMS/npt
+              accel-sim-mem: 1G
+        - lmc:
+            - args: -sf gpu -in ./data_dirs/LMC/in.colloid
+              accel-sim-mem: 1G  
+        - lmr:
+            - args: -sf gpu -in ./data_dirs/LMR/in.colloid
+              accel-sim-mem: 1G  
+        - dcg:
+            - args: ./data_dirs/DCG/main.py
+              accel-sim-mem: 1G  
+        - lgt:
+            - args: ./data_dirs/LGT/main.py
+              accel-sim-mem: 1G  
+        - nst:
+            - args: ./data_dirs/NST/main.py
+              accel-sim-mem: 1G              
+        - rfl:
+            - args: ./data_dirs/RFL/main.py train
+              accel-sim-mem: 1G  
+        - spt:
+            - args: ./data_dirs/SPT/main.py
+              accel-sim-mem: 1G  
+mlperf_train:
+    exec_dir: "/opt/conda/bin"
+    data_dirs: "/workspace/pytorch"
+    execs:
+        - python:
+            - args: ./data_dirs/tools/train_mlperf.py --config-file "./data_dirs/configs/e2e_mask_rcnn_R_50_FPN_1x.yaml" SOLVER.IMS_PER_BATCH 2 TEST.IMS_PER_BATCH 1 SOLVER.MAX_ITER 720000 SOLVER.STEPS "(480000, 640000)" SOLVER.BASE_LR 0.0025
+              accel-sim-mem: 1G
+
+mlperf_infer:
+    exec_dir: "/work/build/bin"
+    data_dirs: "/work"
+    execs:
+        - harness_3dunet:
+            - args: --plugins="/work/build/plugins/pixelShuffle3DPlugin/libpixelshuffle3dplugin.so,/work/build/plugins/conv3D1X1X1K4Plugin/libconv3D1X1X1K4Plugin.so" --logfile_outdir="/work/build/logs/2023.02.14-10.37.51/mahmood2022_TRT/3d-unet-99/Offline" --logfile_prefix="mlperf_log_" --performance_sample_count=42 --warmup_duration=0.0 --gpu_copy_streams=1 --gpu_inference_streams=1 --gpu_batch_size=1 --map_path="/work/data_maps/kits19/val_map.txt" --tensor_path="/work/build/preprocessed_data/KiTS19/inference/int8" --use_graphs=false --gpu_engines="/work/build/engines/mahmood2022/3d-unet/Offline/3d-unet-Offline-gpu-b1-int8.custom_k_99_MaxP.plan" --mlperf_conf_path="/work/measurements/mahmood2022_TRT/3d-unet-99/Offline/mlperf.conf" --user_conf_path="/work/measurements/mahmood2022_TRT/3d-unet-99/Offline/user.conf" --max_dlas=0 --unet3d_sw_gaussian_patch_path="/work/build/preprocessed_data/KiTS19/etc/gaussian_patches.npy" --scenario Offline --model 3d-unet
+              accel-sim-mem: 1G
+        - harness_bert:
+            - args: --logfile_outdir="./data_dirs/build/logs/2022.08.22-14.01.46/mahmood2022_TRT/bert-99/Offline" --logfile_prefix="mlperf_log_" --performance_sample_count=10833 --gpu_batch_size=512 --tensor_path="./data_dirs/build/preprocessed_data/squad_tokenized/input_ids.npy,./data_dirs/build/preprocessed_data/squad_tokenized/segment_ids.npy,./data_dirs/build/preprocessed_data/squad_tokenized/input_mask.npy" --use_graphs=false --gpu_inference_streams=2 --gpu_copy_streams=2 --gpu_engines="./data_dirs/build/engines/mahmood2022/bert/Offline/bert-Offline-gpu-int8_S_384_B_512_P_2_vs.custom_k_99_MaxP.plan" --mlperf_conf_path="./data_dirs/measurements/mahmood2022_TRT/bert-99/Offline/mlperf.conf" --user_conf_path="./data_dirs/measurements/mahmood2022_TRT/bert-99/Offline/user.conf" --scenario Offline --model bert
+              accel-sim-mem: 1G             
+        - harness_resnet50:
+            - args: --logfile_outdir="/work/build/logs/2023.03.10-09.29.49/mahmood2022_TRT/resnet50/Offline" --logfile_prefix="mlperf_log_" --performance_sample_count=2048 --gpu_copy_streams=2 --gpu_inference_streams=1 --run_infer_on_copy_streams=false --warmup_duration=0.0 --gpu_batch_size=1024 --map_path="/work/data_maps/imagenet/val_map.txt" --tensor_path="/work/build/preprocessed_data/imagenet/ResNet50/int8_linear" --use_graphs=false --gpu_engines="/work/build/engines/mahmood2022/resnet50/Offline/resnet50-Offline-gpu-b1024-int8.lwis_k_99_MaxP.plan" --mlperf_conf_path="/work/measurements/mahmood2022_TRT/resnet50/Offline/mlperf.conf" --user_conf_path="/work/measurements/mahmood2022_TRT/resnet50/Offline/user.conf" --max_dlas=0 --scenario Offline --model resnet50
+              accel-sim-mem: 1G
+        - harness_ssdmobilenet:
+            - args: --plugins="/work/build/plugins/NMSOptPlugin/libnmsoptplugin.so" --logfile_outdir="/work/build/logs/2023.02.26-15.18.13/mahmood2022_TRT/ssd-mobilenet/Offline" --logfile_prefix="mlperf_log_" --performance_sample_count=1024 --gpu_batch_size=512 --map_path="/work/data_maps/coco/val_map.txt" --tensor_path="/work/build/preprocessed_data/coco/val2017/SSDMobileNet/int8_linear" --use_graphs=false --gpu_engines="/work/build/engines/mahmood2022/ssd-mobilenet/Offline/ssd-mobilenet-Offline-gpu-b512-int8.lwis_k_99_MaxP.plan" --mlperf_conf_path="/work/measurements/mahmood2022_TRT/ssd-mobilenet/Offline/mlperf.conf" --user_conf_path="/work/measurements/mahmood2022_TRT/ssd-mobilenet/Offline/user.conf" --max_dlas=0 --scenario Offline --model ssd-mobilenet --warmup_duration=0.0 --response_postprocess coco
+              accel-sim-mem: 1G              
+        - harness_ssdresnet34:
+            - args: --plugins="/work/build/plugins/NMSOptPlugin/libnmsoptplugin.so" --logfile_outdir="/work/build/logs/2022.08.22-14.09.49/mahmood2022_TRT/ssd-resnet34/Offline" --logfile_prefix="mlperf_log_" --performance_sample_count=64 --gpu_batch_size=32 --map_path="/work/data_maps/coco/val_map.txt" --tensor_path="/work/build/preprocessed_data/coco/val2017/SSDResNet34/int8_linear" --use_graphs=false --gpu_engines="/work/build/engines/mahmood2022/ssd-resnet34/Offline/ssd-resnet34-Offline-gpu-b32-int8.lwis_k_99_MaxP.plan" --mlperf_conf_path="/work/measurements/mahmood2022_TRT/ssd-resnet34/Offline/mlperf.conf" --user_conf_path="/work/measurements/mahmood2022_TRT/ssd-resnet34/Offline/user.conf" --max_dlas=0 --scenario Offline --model ssd-resnet34 --response_postprocess coco
+              accel-sim-mem: 1G
+        - harness_rnnt:
+            - args: --plugins="/work/build/plugins/RNNTOptPlugin/librnntoptplugin.so" --logfile_outdir="/work/build/logs/2022.11.02-17.19.24/mahmood2022_TRT/rnnt/Offline" --logfile_prefix="mlperf_log_" --performance_sample_count=2513 --audio_batch_size=256 --audio_buffer_num_lines=4096 --dali_batches_issue_ahead=4 --dali_pipeline_depth=4 --num_warmups=512 --raw_data_dir="/work/build/preprocessed_data/rnnt_dev_clean_500_raw" --raw_length_dir="/work/build/preprocessed_data/rnnt_dev_clean_500_raw/int32" --preprocessed_data_dir="/work/build/preprocessed_data/rnnt_dev_clean_512/fp16" --preprocessed_length_dir="/work/build/preprocessed_data/rnnt_dev_clean_512/int32" --val_map="/work/data_maps/rnnt_dev_clean_512/val_map.txt" --mlperf_conf_path="measurements/mahmood2022_TRT/rnnt/Offline/mlperf.conf" --user_conf_path="/work/measurements/mahmood2022_TRT/rnnt/Offline/user.conf" --batch_size=16 --pipelined_execution=true --batch_sorting=true --enable_audio_processing=true --use_copy_kernel=true --streams_per_gpu=1 --cuda_graph=false --audio_fp16_input=true --start_from_device=false --audio_serialized_pipeline_file="/work/build/bin/dali/dali_pipeline_gpu_fp16.pth" --scenario Offline --model rnnt --engine_dir="/work/build/engines/mahmood2022/rnnt/Offline"              
+              accel-sim-mem: 1G                            
+              
+                   
