@@ -17,7 +17,7 @@ output_file2 = wrk + "/" + base_name + "_report_" + str(cv_thresh) + ".csv"     
 output_file3 = wrk + "/" + base_name + "_tiers_" + str(cv_thresh) + ".csv"           # This file shows statistic about tier numbers
 if os.path.isfile(output_file1) and os.path.isfile(output_file2) and os.path.isfile(output_file3):
     print("Stat, report and tier files exist")
-   sys.exit()
+    sys.exit()
     
 f1 = open(output_file1, 'w', newline='')
 f2 = open(output_file2, 'w', newline='')
